@@ -1,0 +1,15 @@
+/* Custom Fonts */
+@font-face {
+    font-family: 'StretchPro';
+    src: url('../fonts/StretchPro.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Apply StretchPro font */
+.stretch-font {
+    font-family: 'StretchPro', 'Arial Black', sans-serif !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

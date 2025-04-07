@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlasmaGFX</title>
+    <link rel="icon" type="image/png" href="images/plasmalogo.png">
+    <link rel="preload" href="fonts/StretchPro.otf" as="font" type="font/otf" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom-fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'StretchPro';
+            src: url('fonts/StretchPro.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/plasmalogo2.png" alt="Plasma GFX Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="menu-toggle" onclick="openNav();">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="nav-menu">
+                <div class="popup-header">
+                    <h3 class="popup-title">Menu</h3>
+                    <div class="popup-close" onclick="closeNav();"><i class="fas fa-times"></i></div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li class="nav-social-links">
+                        <a href="https://www.instagram.com/creative_plasma?igsh=MWhnbWkzNmNhOXZmcg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.gg/HHpMsNNpPB" target="_blank"><i class="fab fa-discord"></i></a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="stretch-font"><span data-i18n="welcome-to">welcome to</span> <span>plasma</span></h1>
+                <p class="stretch-font" data-i18n="business-needs">All what your Business needs</p> <!-- Change this line to something more relevant to your business -->
+                <div class="hero-buttons">
+                    <a href="#services" class="btn primary-btn" data-i18n="our-services">Our Services</a>
+                    <a href="#contact" class="btn secondary-btn" data-i18n="contact-us">Contact Us</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="about-us">About Us</h2>
+                <p data-i18n="about-description">Learn more about our company and our mission</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/3Dlogo.png" alt="About Us">
+                </div>
+                <div class="about-text">
+                    <h3 data-i18n="who-we-are">Who We Are</h3>
+                    <p data-i18n="who-we-are-text">An agency founded in 2022, now relaunched with a fresh style and innovative art direction. Combining creativity with expertise, we deliver exceptional results.</p>
+
+                    <h3 data-i18n="our-mission">Our Mission</h3>
+                    <p data-i18n="our-mission-text">We empower businesses through strategic branding, captivating design, and high-performance websites crafted to elevate their presence and forge lasting connections with their audience. </p>
+
+                    <h3 data-i18n="our-vision">Our Vision</h3>
+                    <p data-i18n="our-vision-text">To be the premier creative partner for visionary businesses-transforming ideas into powerful design solutions that fuel growth and redefine success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="our-services-title">Our Services</h2>
+                <p data-i18n="services-description">Discover the range of services we offer</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 data-i18n="branding">Branding</h3>
+                    <p data-i18n="branding-text">Premium branding services to craft a powerful business identity, including logo design, brand guidelines, and cohesive visual identity systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                    <h3 data-i18n="social-media">Social Media Designs</h3>
+                    <p data-i18n="social-media-text">Boost your social media impact with stunning, on-brand graphics and easy-to-edit templates—crafted to increase engagement and strengthen your visual identity.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 data-i18n="web-dev">Website Development</h3>
+                    <p data-i18n="web-dev-text">Elevate your digital footprint with custom-built websites: pixel-perfect design, flawless responsiveness, and strategic optimization for superior performance and conversions.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="why-choose-us">Why Choose Plasma GFX?</h2>
+                <p data-i18n="orders-completed">People trusts us for a reason</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-title" data-i18n="client-satisfaction">Client Satisfaction</div>
+                    <div class="stat-description" data-i18n="client-satisfaction-text">We prioritize your satisfaction with every project we deliver</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">99+</div>
+                    <div class="stat-title" data-i18n="completed-projects">Completed Projects</div>
+                    <div class="stat-description" data-i18n="completed-projects-text">Successfully delivered designs to satisfied clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-title" data-i18n="support-available">Support Available</div>
+                    <div class="stat-description" data-i18n="support-available-text">Our team is always ready to assist you with your needs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number">6+</div>
+                    <div class="stat-title" data-i18n="years-experience">Years Experience</div>
+                    <div class="stat-description" data-i18n="years-experience-text">Professional expertise in creative design solutions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="contact-us-title">Contact Us</h2>
+                <p data-i18n="contact-description">Get in touch with us for any inquiries</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3 data-i18n="address">Address</h3>
+                            <p data-i18n="address-value">Syria - Damascus</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3 data-i18n="phone">Phone</h3>
+                            <p>+963 992 318 066</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3 data-i18n="email">Email</h3>
+                            <p>info@plasmagfx.com</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/creative_plasma?igsh=MWhnbWkzNmNhOXZmcg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.gg/HHpMsNNpPB" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" data-i18n="your-name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" data-i18n="your-email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" data-i18n="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" data-i18n="your-message" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn" data-i18n="send-message">Send Message</button>
+                    </form>
+                    <div class="form-note">
+                        <p>* Your message will be sent directly to our team's email and we will respond within 24-48 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/plasmalogo.png" alt="Plasma GFX Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-links">
+                    <h3 data-i18n="quick-links">Quick Links</h3>
+                    <ul>
+                        <li><a href="#home" data-i18n="home">Home</a></li>
+                        <li><a href="#about" data-i18n="about-us">About Us</a></li>
+                        <li><a href="#contact" data-i18n="contact-us">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3 data-i18n="our-services-title">Our Services</h3>
+                    <ul>
+                        <li><a href="#services" data-i18n="branding">Branding</a></li>
+                        <li><a href="#services" data-i18n="social-media">Social Media Designs</a></li>
+                        <li><a href="#services" data-i18n="web-dev">Website Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 data-i18n="contact-info">Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="address-value">Syria - Damascus</span></p>
+                    <p><i class="fas fa-phone-alt"></i> +963 992 318 066</p>
+                    <p><i class="fas fa-envelope"></i> info@plasmagfx.com</p>
+                    <div class="footer-social-links">
+                        <a href="https://www.instagram.com/creative_plasma?igsh=MWhnbWkzNmNhOXZmcg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.gg/HHpMsNNpPB" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Plasma GFX , <span data-i18n="all-rights-reserved">All Rights Reserved .</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+
+    <!-- Direct script to ensure navbar works -->
+    <script>
+
+
+        // Global functions for opening and closing the navbar
+        function openNav() {
+            console.log('Opening nav');
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (navMenu && menuToggle) {
+                // Add active class
+                navMenu.classList.add('active');
+                menuToggle.classList.add('active');
+
+                // Change icon
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+
+                // Apply inline styles as a fallback
+                navMenu.style.top = '80px';
+                navMenu.style.opacity = '1';
+                navMenu.style.visibility = 'visible';
+                navMenu.style.pointerEvents = 'auto';
+                navMenu.style.transform = 'scale(1)';
+                navMenu.style.display = 'block';
+            }
+        }
+
+        function closeNav() {
+            console.log('Closing nav');
+            const navMenu = document.querySelector('.nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (navMenu && menuToggle) {
+                // Remove active class
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+
+                // Change icon back
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+
+                // Reset inline styles
+                setTimeout(() => {
+                    navMenu.style.top = '';
+                    navMenu.style.opacity = '';
+                    navMenu.style.visibility = '';
+                    navMenu.style.pointerEvents = '';
+                    navMenu.style.transform = '';
+                }, 300);
+            }
+        }
+
+        // Ensure navbar functionality works directly
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Direct script loaded');
+
+
+
+            // Get menu elements
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const popupClose = document.querySelector('.popup-close');
+
+            if (menuToggle && navMenu) {
+                console.log('Menu elements found directly');
+
+                // Add direct click handlers as a backup
+                menuToggle.addEventListener('click', openNav);
+
+                // Add direct close handler
+                if (popupClose) {
+                    popupClose.addEventListener('click', closeNav);
+                }
+
+                // Close when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (navMenu.classList.contains('active') &&
+                        !navMenu.contains(event.target) &&
+                        !menuToggle.contains(event.target)) {
+                        closeNav();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
