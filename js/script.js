@@ -37,57 +37,43 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.remove('active');
         menuToggle.classList.remove('active');
 
-        // Change icon back to bars
-        const icon = menuToggle.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        // No need to change the icon as we're keeping it consistent
     }
 
     // Function to open the menu popup
     function openMenuPopup() {
         console.log('Opening menu popup');
 
-        // First change the icon immediately
-        menuToggle.classList.add('active');
-        const icon = menuToggle.querySelector('i');
-        if (icon) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
+        // Only open the menu if we're in mobile view
+        if (window.innerWidth <= 768) {
+            // Add active class to menu toggle without changing the icon
+            menuToggle.classList.add('active');
+
+            // Force remove any inline styles that might be interfering
+            navMenu.style.cssText = '';
+
+            // Force add the active class immediately
+            navMenu.classList.add('active');
+
+            // Debug information
+            console.log('Menu active class added immediately:', navMenu.classList.contains('active'));
+
+            // Then force it again after a delay to ensure it takes effect
+            setTimeout(() => {
+                // Double-check and force if needed
+                if (!navMenu.classList.contains('active')) {
+                    console.log('Active class was lost, re-adding');
+                    navMenu.classList.add('active');
+                }
+
+                // Apply inline styles as a fallback
+                navMenu.style.top = '80px';
+                navMenu.style.opacity = '1';
+                navMenu.style.pointerEvents = 'auto';
+                navMenu.style.transform = 'scale(1)';
+                navMenu.style.display = 'block';
+            }, 100);
         }
-
-        // Force remove any inline styles that might be interfering
-        navMenu.style.cssText = '';
-
-        // Force add the active class immediately
-        navMenu.classList.add('active');
-
-        // Debug information
-        console.log('Menu active class added immediately:', navMenu.classList.contains('active'));
-        console.log('Menu style top:', window.getComputedStyle(navMenu).top);
-        console.log('Menu style right:', window.getComputedStyle(navMenu).right);
-        console.log('Menu style opacity:', window.getComputedStyle(navMenu).opacity);
-        console.log('Menu style transform:', window.getComputedStyle(navMenu).transform);
-
-        // Then force it again after a delay to ensure it takes effect
-        setTimeout(() => {
-            // Double-check and force if needed
-            if (!navMenu.classList.contains('active')) {
-                console.log('Active class was lost, re-adding');
-                navMenu.classList.add('active');
-            }
-
-            // Apply inline styles as a fallback
-            navMenu.style.top = '80px';
-            navMenu.style.opacity = '1';
-            navMenu.style.pointerEvents = 'auto';
-            navMenu.style.transform = 'scale(1)';
-
-            // More debug information
-            console.log('Menu after timeout:');
-            console.log('- active class:', navMenu.classList.contains('active'));
-            console.log('- style top:', window.getComputedStyle(navMenu).top);
-            console.log('- style opacity:', window.getComputedStyle(navMenu).opacity);
-        }, 100);
     }
 
     // Toggle menu when clicking the menu button
@@ -224,8 +210,39 @@ document.addEventListener('DOMContentLoaded', function() {
             // In a real implementation, this would send an email to info@plasmagfx.com
             // using a server-side script or email service API
 
-            // Show success message
-            alert('Thank you for your message! Your inquiry has been sent to our team and we will get back to you within 24-48 hours.');
+            // Create and show notification popup
+            const notification = document.createElement('div');
+            notification.className = 'notification-popup';
+            notification.innerHTML = `
+                <div class="notification-close"><i class="fas fa-times"></i></div>
+                <div class="notification-title">Message Sent!</div>
+                <p class="notification-message">Thank you for your message! Your inquiry has been sent to our team and we will get back to you within 24 hours.</p>
+            `;
+
+            // Add to the DOM
+            document.body.appendChild(notification);
+
+            // Add close functionality
+            const closeBtn = notification.querySelector('.notification-close');
+            closeBtn.addEventListener('click', function() {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            });
+
+            // Show the notification with a slight delay
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 5000);
 
             // Reset form
             contactForm.reset();
@@ -262,11 +279,96 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .notification-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(39, 47, 206, 0.95);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            max-width: 350px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .notification-popup.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification-popup .notification-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .notification-popup .notification-close:hover {
+            color: white;
+        }
+
+        .notification-popup .notification-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .notification-popup .notification-message {
+            margin: 0;
+        }
     `;
     document.head.appendChild(style);
 
     // Initial check for elements in view
     revealElements();
+
+    // Handle responsive navigation
+    function handleResponsiveNav() {
+        if (window.innerWidth >= 769) {
+            // Reset any mobile menu styles when in desktop view
+            navMenu.style.top = '';
+            navMenu.style.opacity = '';
+            navMenu.style.visibility = '';
+            navMenu.style.pointerEvents = '';
+            navMenu.style.transform = '';
+            navMenu.style.display = '';
+            navMenu.classList.remove('active');
+
+            // Hide popup header in desktop view
+            const popupHeader = document.getElementById('mobile-menu-header');
+            if (popupHeader) {
+                popupHeader.style.display = 'none';
+            }
+
+            // Reset menu toggle active state
+            if (menuToggle) {
+                menuToggle.classList.remove('active');
+            }
+        } else {
+            // Show popup header in mobile view
+            const popupHeader = document.getElementById('mobile-menu-header');
+            if (popupHeader && !navMenu.classList.contains('active')) {
+                popupHeader.style.display = '';
+            }
+        }
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', handleResponsiveNav);
+
+    // Initial check
+    handleResponsiveNav();
 
     // Set active navigation item based on scroll position
     updateActiveNavItem();
