@@ -35,8 +35,8 @@
                 <i class="fas fa-bars"></i>
             </div>
             <nav class="nav-menu">
-                <div class="popup-header">
-                    <h3 class="popup-title">Menu</h3>
+                <div class="popup-header" id="mobile-menu-header">
+                    <div class="popup-spacer"></div>
                     <div class="popup-close" onclick="closeNav();"><i class="fas fa-times"></i></div>
                 </div>
                 <ul class="nav-links">
@@ -54,16 +54,34 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-shapes"></div>
+        <div class="hero-particles"></div>
         <div class="container">
-            <div class="hero-content">
-                <h1 class="stretch-font"><span data-i18n="welcome-to">welcome to</span> <span>plasma</span></h1>
-                <p class="stretch-font" data-i18n="business-needs">All what your Business needs</p> <!-- Change this line to something more relevant to your business -->
-                <div class="hero-buttons">
-                    <a href="#services" class="btn primary-btn" data-i18n="our-services">Our Services</a>
-                    <a href="#contact" class="btn secondary-btn" data-i18n="contact-us">Contact Us</a>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tagline">Creative Agency</div>
+                    <h1 class="stretch-font"><span data-i18n="welcome-to">welcome to</span> <span>plasma</span></h1>
+                    <p class="hero-description">Transforming ideas into extraordinary digital experiences</p>
+                    <p class="stretch-font" data-i18n="business-needs">All what your Business needs</p>
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn primary-btn" data-i18n="our-services">Our Services</a>
+                        <a href="#contact" class="btn secondary-btn" data-i18n="contact-us">Contact Us</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-visual-inner" id="logo-container">
+                        <div class="hero-visual-element hero-visual-circle"></div>
+                        <div class="hero-visual-element hero-visual-square"></div>
+                        <div class="hero-visual-element hero-visual-triangle"></div>
+                        <div class="logo-glow" id="logo-glow"></div>
+                        <img src="images/plasmalogo.png" alt="Plasma Creative" class="hero-logo-float" id="runaway-logo">
+                    </div>
                 </div>
             </div>
-
+            <div class="hero-scroll-indicator">
+                <div class="scroll-text">Scroll Down</div>
+                <div class="scroll-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
         </div>
     </section>
 
@@ -271,10 +289,79 @@
     <!-- JavaScript -->
     <script src="js/script.js"></script>
 
+    <!-- Hero Scroll Indicator and Logo Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll indicator functionality
+            const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    const aboutSection = document.getElementById('about');
+                    if (aboutSection) {
+                        aboutSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // Logo runaway effect
+            const heroSection = document.querySelector('.hero');
+            const logo = document.getElementById('runaway-logo');
+            const logoGlow = document.getElementById('logo-glow');
+            const logoContainer = document.getElementById('logo-container');
+
+            if (heroSection && logo && logoContainer) {
+                // Variables for the runaway effect
+                const maxMovement = 50; // Maximum pixels the logo can move
+                const sensitivity = 0.1; // How sensitive the movement is (0.1 = 10% of mouse movement)
+                let containerRect;
+
+                // Update container dimensions on resize
+                function updateContainerRect() {
+                    containerRect = logoContainer.getBoundingClientRect();
+                }
+
+                // Initial setup
+                updateContainerRect();
+                window.addEventListener('resize', updateContainerRect);
+
+                // Mouse move handler for the hero section
+                heroSection.addEventListener('mousemove', function(e) {
+                    // Only apply effect on desktop
+                    if (window.innerWidth <= 768) return;
+
+                    // Calculate mouse position relative to the container center
+                    const containerCenterX = containerRect.left + containerRect.width / 2;
+                    const containerCenterY = containerRect.top + containerRect.height / 2;
+
+                    // Calculate distance from mouse to center
+                    const distanceX = e.clientX - containerCenterX;
+                    const distanceY = e.clientY - containerCenterY;
+
+                    // Calculate movement (move away from mouse)
+                    // The closer the mouse, the more the logo moves
+                    const moveX = -distanceX * sensitivity;
+                    const moveY = -distanceY * sensitivity;
+
+                    // Limit movement to maxMovement
+                    const limitedMoveX = Math.max(Math.min(moveX, maxMovement), -maxMovement);
+                    const limitedMoveY = Math.max(Math.min(moveY, maxMovement), -maxMovement);
+
+                    // Apply movement with transform
+                    logo.style.transform = `translate(calc(-50% + ${limitedMoveX}px), calc(-50% + ${limitedMoveY}px))`;
+                    logoGlow.style.transform = `translate(calc(-50% + ${limitedMoveX * 0.7}px), calc(-50% + ${limitedMoveY * 0.7}px))`;
+                });
+
+                // Reset position when mouse leaves the hero section
+                heroSection.addEventListener('mouseleave', function() {
+                    logo.style.transform = 'translate(-50%, -50%)';
+                    logoGlow.style.transform = 'translate(-50%, -50%)';
+                });
+            }
+        });
+    </script>
+
     <!-- Direct script to ensure navbar works -->
     <script>
-
-
         // Global functions for opening and closing the navbar
         function openNav() {
             console.log('Opening nav');
@@ -286,12 +373,7 @@
                 navMenu.classList.add('active');
                 menuToggle.classList.add('active');
 
-                // Change icon
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                }
+                // Keep the icon consistent
 
                 // Apply inline styles as a fallback
                 navMenu.style.top = '80px';
@@ -313,12 +395,7 @@
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
 
-                // Change icon back
-                const icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                // Keep the icon consistent
 
                 // Reset inline styles
                 setTimeout(() => {
@@ -331,11 +408,24 @@
             }
         }
 
+        // Handle responsive navigation
+        function handleResponsiveNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            if (window.innerWidth >= 769) {
+                // Reset any mobile menu styles when in desktop view
+                navMenu.style.top = '';
+                navMenu.style.opacity = '';
+                navMenu.style.visibility = '';
+                navMenu.style.pointerEvents = '';
+                navMenu.style.transform = '';
+                navMenu.style.display = '';
+                navMenu.classList.remove('active');
+            }
+        }
+
         // Ensure navbar functionality works directly
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Direct script loaded');
-
-
 
             // Get menu elements
             const menuToggle = document.querySelector('.menu-toggle');
@@ -361,6 +451,12 @@
                         closeNav();
                     }
                 });
+
+                // Handle window resize
+                window.addEventListener('resize', handleResponsiveNav);
+
+                // Initial check
+                handleResponsiveNav();
             }
         });
     </script>
@@ -372,3 +468,4 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
+
